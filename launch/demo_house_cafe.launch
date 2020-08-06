@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="demo_house_cafe" type="demo_house_cafe" name="demo_house_cafe" output="screen">
+  </node>
+</launch>

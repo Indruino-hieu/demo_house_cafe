@@ -32,17 +32,17 @@ class map_navigation():
 		#path_to_sounds = "/home/ros/catkin_ws/src/gaitech_edu/src/sounds/"
 
 		# declare the coordinates of interest 
-		self.xCafe =  7.31
-		self.yCafe = 1.46
-		self.xOffice1 = 5.10
-		self.yOffice1 = -3.82
+		self.xCafe =  -3.00
+		self.yCafe = 0.96
+		self.xOffice1 = 6.00
+		self.yOffice1 = -0.94
 		self.xOffice2 = -2.35
 		self.yOffice2 = -0.95
 		self.xOffice3 = 35.20
 		self.yOffice3 = 13.50
 		self.goalReached = False
 		# initiliaze
-        	rospy.init_node('map_navigation', anonymous=False)
+        	rospy.init_node('demo_house_cafe', anonymous=False)
 		choice = self.choose()
 		
 		if (choice == 0):
