@@ -21,4 +21,4 @@
 		self.xOffice3 = 35.20
 		self.yOffice3 = 13.50
 
-# modify for your projecs.
+# modify for your projects.
