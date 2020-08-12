@@ -6,14 +6,15 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from math import radians, degrees
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Point 
+from std_msgs.msg import Byte
 #from sound_play.libsoundplay import SoundClient
+global Value
 
 class map_navigation():
-	
 	def choose(self):
 
 		choice='q'
-		
+
 		rospy.loginfo("|-------------------------------|")
 		rospy.loginfo("|PRESSE A KEY:")
 		rospy.loginfo("|'0': Home ")
@@ -25,17 +26,17 @@ class map_navigation():
 		rospy.loginfo("|WHERE TO GO?")
 		choice = input()
 		return choice
-
+			
 	def __init__(self): 
-
+		self.button_sub = rospy.Subscriber('button', Byte, self.get_button, queue_size = 1)
 		#sc = SoundClient()
 		#path_to_sounds = "/home/ros/catkin_ws/src/gaitech_edu/src/sounds/"
 
 		# declare the coordinates of interest 
-		self.xCafe =  -3.00
-		self.yCafe = 0.96
-		self.xOffice1 = 6.00
-		self.yOffice1 = -0.94
+		self.xCafe =  3.98
+		self.yCafe = 0.02
+		self.xOffice1 = 0.604
+		self.yOffice1 = -0.02
 		self.xOffice2 = -2.35
 		self.yOffice2 = -0.95
 		self.xOffice3 = 35.20
@@ -45,7 +46,7 @@ class map_navigation():
         	rospy.init_node('demo_house_cafe', anonymous=False)
 		choice = self.choose()
 		
-		if (choice == 0):
+		if (choice == 0 ):
 
 			self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
 		
@@ -104,6 +105,20 @@ class map_navigation():
 				else:
 					rospy.loginfo("Hard Luck!")
 					#sc.playWave(path_to_sounds+"short_buzzer.wav")
+
+	def get_button(self, button):
+		if button.data == 1 :
+			self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
+			rospy.loginfo("1")
+		
+		elif button.data == 2:
+			self.goalReached = self.moveToGoal(self.xOffice1, self.yOffice1)
+
+		elif button.data == 3:
+			self.goalReached = self.moveToGoal(self.xOffice2, self.yOffice2)
+		
+		elif button.data == 4:
+			self.goalReached = self.moveToGoal(self.xOffice3, self.yOffice3)
 
 
 	def shutdown(self):
