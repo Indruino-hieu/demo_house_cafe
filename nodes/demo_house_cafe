@@ -16,11 +16,13 @@ class map_navigation():
 		choice='q'
 
 		rospy.loginfo("|-------------------------------|")
+		rospy.loginfo("|Loading Food >>>>>>>>>>>>>>>>>>")
 		rospy.loginfo("|PRESSE A KEY:")
-		rospy.loginfo("|'0': Home ")
-		rospy.loginfo("|'1': Room 1 ")
-		rospy.loginfo("|'2': Room 2 ")
-		rospy.loginfo("|'3': Room 3 ")
+		rospy.loginfo("|'0': Go to Point Start >>>>>>>>>> ")
+		rospy.loginfo("|'1': Go to Table 1 >>>>>>>>>> ")
+		rospy.loginfo("|'2': Go to Table 2 >>>>>>>>>> ")
+		rospy.loginfo("|'3': Go to Table 3 >>>>>>>>>> ")
+		rospy.loginfo("|'4': Go to Table 4 >>>>>>>>>> ")
 		rospy.loginfo("|'q': Quit ")
 		rospy.loginfo("|-------------------------------|")
 		rospy.loginfo("|WHERE TO GO?")
@@ -33,14 +35,18 @@ class map_navigation():
 		#path_to_sounds = "/home/ros/catkin_ws/src/gaitech_edu/src/sounds/"
 
 		# declare the coordinates of interest 
-		self.xCafe =  3.98
-		self.yCafe = 0.02
-		self.xOffice1 = 0.604
-		self.yOffice1 = -0.02
-		self.xOffice2 = -2.35
-		self.yOffice2 = -0.95
-		self.xOffice3 = 35.20
-		self.yOffice3 = 13.50
+		self.xStart_Point =  0.04
+		self.yStart_Point = 0.27
+		self.xCounter = 0.04
+		self.yCounter = 0.27
+		self.xTable1 = -2.68
+		self.yTable1 = -1.12
+		self.xTable2 = -3.78
+		self.yTable2 = -3.13
+		self.xTable3 = -4.55
+		self.yTable3 = -2.02
+		self.xTable4 = -2.96
+		self.yTable4 = 0.27
 		self.goalReached = False
 		# initiliaze
         	rospy.init_node('demo_house_cafe', anonymous=False)
@@ -48,19 +54,23 @@ class map_navigation():
 		
 		if (choice == 0 ):
 
-			self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
+			self.goalReached = self.moveToGoal(self.xStart_Point, self.yStart_Point)
 		
 		elif (choice == 1):
 
-			self.goalReached = self.moveToGoal(self.xOffice1, self.yOffice1)
+			self.goalReached = self.moveToGoal(self.xTable1, self.yTable1)
 
 		elif (choice == 2):
 			
-			self.goalReached = self.moveToGoal(self.xOffice2, self.yOffice2)
+			self.goalReached = self.moveToGoal(self.xTable2, self.yTable2)
 		
 		elif (choice == 3):
 
-			self.goalReached = self.moveToGoal(self.xOffice3, self.yOffice3)
+			self.goalReached = self.moveToGoal(self.xTable3, self.yTable3)
+
+		elif (choice == 4):
+
+			self.goalReached = self.moveToGoal(self.xTable4, self.yTable4)
 
 		if (choice!='q'):
 
@@ -80,19 +90,23 @@ class map_navigation():
 			choice = self.choose()
 			if (choice == 0):
 
-				self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
+				self.goalReached = self.moveToGoal(self.xStart_Point, self.yStart_Point)
 		
 			elif (choice == 1):
 
-				self.goalReached = self.moveToGoal(self.xOffice1, self.yOffice1)
+				self.goalReached = self.moveToGoal(self.xTable1, self.yTable1)
 
 			elif (choice == 2):
 		
-				self.goalReached = self.moveToGoal(self.xOffice2, self.yOffice2)
+				self.goalReached = self.moveToGoal(self.xTable2, self.yTable2)
 		
 			elif (choice == 3):
 
-				self.goalReached = self.moveToGoal(self.xOffice3, self.yOffice3)
+				self.goalReached = self.moveToGoal(self.xTable3, self.yTable3)
+
+			elif (choice == 4):
+
+				self.goalReached = self.moveToGoal(self.xTable4, self.yTable4)
 
 			if (choice!='q'):
 
@@ -108,17 +122,29 @@ class map_navigation():
 
 	def get_button(self, button):
 		if button.data == 1 :
-			self.goalReached = self.moveToGoal(self.xCafe, self.yCafe)
-			rospy.loginfo("1")
+			self.goalReached = self.moveToGoal(self.xStart_Point, self.yStart_Point)
+			rospy.loginfo("End Calling >>>>>>>>")
+			rospy.loginfo("Go To Point Start >>>>>>>>")
 		
 		elif button.data == 2:
-			self.goalReached = self.moveToGoal(self.xOffice1, self.yOffice1)
+			self.goalReached = self.moveToGoal(self.xCounter, self.yCounter)
+			rospy.loginfo("Table 1 Calling >>>>>>>>")
+			rospy.loginfo("Presse a key '1' to go Table1 >>>>>>>>")
 
 		elif button.data == 3:
-			self.goalReached = self.moveToGoal(self.xOffice2, self.yOffice2)
+			self.goalReached = self.moveToGoal(self.xCounter, self.yCounter)
+			rospy.loginfo("Table 2 Calling >>>>>>>>")
+			rospy.loginfo("Presse a key '2' to go Table2 >>>>>>>>")
 		
 		elif button.data == 4:
-			self.goalReached = self.moveToGoal(self.xOffice3, self.yOffice3)
+			self.goalReached = self.moveToGoal(self.xCounter, self.yCounter)
+			rospy.loginfo("Table 3 Calling >>>>>>>>")
+			rospy.loginfo("Presse a key '3' to go Table3 >>>>>>>>")
+
+		elif button.data == 5:
+			self.goalReached = self.moveToGoal(self.xTable4, self.yTable4)
+			rospy.loginfo("Table 4 Calling >>>>>>>>")
+			rospy.loginfo("Presse a key '4' to go Table4 >>>>>>>>")
 
 
 	def shutdown(self):
