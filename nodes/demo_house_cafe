@@ -39,14 +39,14 @@ class map_navigation():
 		self.yStart_Point = 0.27
 		self.xCounter = 0.04
 		self.yCounter = 0.27
-		self.xTable1 = -2.68
-		self.yTable1 = -1.12
-		self.xTable2 = -3.78
-		self.yTable2 = -3.13
-		self.xTable3 = -4.55
-		self.yTable3 = -2.02
-		self.xTable4 = -2.96
-		self.yTable4 = 0.27
+		self.xTable1 = 1.18
+		self.yTable1 = 2.23
+		self.xTable2 = 0.08
+		self.yTable2 = 1.01
+		self.xTable3 = 1.87
+		self.yTable3 = -0.05
+		self.xTable4 = 0.01
+		self.yTable4 = 1.56
 		self.goalReached = False
 		# initiliaze
         	rospy.init_node('demo_house_cafe', anonymous=False)
@@ -121,27 +121,27 @@ class map_navigation():
 					#sc.playWave(path_to_sounds+"short_buzzer.wav")
 
 	def get_button(self, button):
-		if button.data == 1 :
+		if button.data == 0 :
 			self.goalReached = self.moveToGoal(self.xStart_Point, self.yStart_Point)
 			rospy.loginfo("End Calling >>>>>>>>")
 			rospy.loginfo("Go To Point Start >>>>>>>>")
 		
-		elif button.data == 2:
-			self.goalReached = self.moveToGoal(self.xCounter, self.yCounter)
+		elif button.data == 1:
+			self.goalReached = self.moveToGoal(self.xTable1, self.yTable1)
 			rospy.loginfo("Table 1 Calling >>>>>>>>")
 			rospy.loginfo("Presse a key '1' to go Table1 >>>>>>>>")
 
-		elif button.data == 3:
-			self.goalReached = self.moveToGoal(self.xCounter, self.yCounter)
+		elif button.data == 2:
+			self.goalReached = self.moveToGoal(self.xTable2, self.yTable2)
 			rospy.loginfo("Table 2 Calling >>>>>>>>")
 			rospy.loginfo("Presse a key '2' to go Table2 >>>>>>>>")
 		
-		elif button.data == 4:
-			self.goalReached = self.moveToGoal(self.xCounter, self.yCounter)
+		elif button.data == 3:
+			self.goalReached = self.moveToGoal(self.xTable3, self.yTable3)
 			rospy.loginfo("Table 3 Calling >>>>>>>>")
 			rospy.loginfo("Presse a key '3' to go Table3 >>>>>>>>")
 
-		elif button.data == 5:
+		elif button.data == 4:
 			self.goalReached = self.moveToGoal(self.xTable4, self.yTable4)
 			rospy.loginfo("Table 4 Calling >>>>>>>>")
 			rospy.loginfo("Presse a key '4' to go Table4 >>>>>>>>")
