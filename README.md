@@ -1,5 +1,11 @@
 # demo_house_cafe
 
+# How to use
+* Run roscore
+* Run navigation
+* Run rosbridge_websocket: `$ roslaunch demo_house_cafe main.launch`
+* Run demo_house_cafe: `$ roslaunch demo_house_cafe demo_house_cafe.launch`
+* Open web interface on your browser
 # run file .y in folder nodes.
 
 		rospy.loginfo("|-------------------------------|")
