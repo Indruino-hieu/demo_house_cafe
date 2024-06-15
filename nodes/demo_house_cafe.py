@@ -49,7 +49,7 @@ class map_navigation():
 		self.yTable4 = 1.56
 		self.goalReached = False
 		# initiliaze
-        	rospy.init_node('demo_house_cafe', anonymous=False)
+        rospy.init_node('demo_house_cafe', anonymous=False)
 		choice = self.choose()
 		
 		if (choice == 0 ):
